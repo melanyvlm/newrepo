@@ -21,7 +21,7 @@
 
   #main-container {
       margin: 4rem 12rem;
-      border: 5px solid #4c96d7;
+      border: 5px solid #2E70DB;
       background-color: #ffffff;
   }
 
@@ -96,7 +96,7 @@ header a {
 }
 
 a {
-  color: #4c96d7;
+  color: #2E70DB;
 }
 
 nav {
@@ -121,7 +121,7 @@ nav a {
 /* Home */
 .hero {
   background-image: url(../images/vehicles/delorean.jpg);
-  color: #4c96d7;
+  color: #2E70DB;
   font-size: 18px;
   height: 550px;
   background-repeat: no-repeat;
@@ -141,7 +141,7 @@ nav a {
 .hero button {
   border: 1px solid #3a3a3a;
   color: #3a3a3a;
-  background-color: #4c96d7;
+  background-color: #2E70DB;
   padding: 12px 24px;
   font-weight: 500;
   position: relative;
@@ -163,7 +163,7 @@ nav a {
 }
 
 .upgraded-cars div {
-  background-color: #4c96d7;
+  background-color: #2E70DB;
   height: 95px;
   padding: 0.2rem 0;
   margin: 0.2rem;
