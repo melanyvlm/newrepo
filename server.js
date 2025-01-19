@@ -29,7 +29,7 @@ app.use(static)
 
 // Index route
 app.get("/", function(req, res){
-  render.render("index", {title: "Home"})
+  res.render("index", {title: "Home"})
 })
 
 /* ***********************
