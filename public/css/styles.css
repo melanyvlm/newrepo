@@ -118,10 +118,6 @@ nav a {
   color: #ffffff;
 }
 
-#main-container {
-  margin: 0;
-}
-
 /* Home */
 .hero {
   background-image: url(../images/vehicles/delorean.jpg);
