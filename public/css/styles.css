@@ -58,7 +58,7 @@ nav a {
 
 /* Home */
 .hero {
-  background-image: url(/public/images/vehicles/delorean.jpg);
+  background-image: url(../images/vehicles/delorean.jpg);
   color: #4c96d7;
   font-size: 18px;
   height: 550px;
@@ -66,6 +66,52 @@ nav a {
   background-position: 67px 90px;
 }
 
+.hero .title-car {
+  font-weight: 600;
+}
+
+.hero h1 {
+
+  color: #3a3a3a;
+
+}
+
+.hero button {
+  border: 1px solid #3a3a3a;
+  color: #3a3a3a;
+  background-color: #4c96d7;
+  padding: 12px 24px;
+  font-weight: 500;
+  position: relative;
+  left: 48px;
+  top: 5px;
+
+}
+.hero ul {
+  padding: 0;
+  list-style: none;
+}
+
+/* Upgraded section */
+.upgraded-cars {
+  -webkit-flex: 0 0 50%;
+  flex: 0 0 50%;
+  max-width: 50%;
+  text-align: center;
+}
+
+.upgraded-cars div {
+  background-color: #4c96d7;
+  height: 95px;
+  padding: 0.2rem 0;
+  margin: 0.2rem;
+  border: 1px solid black;
+}
+
+/* -- -- */
+footer {
+  text-align: center;
+}
 @media (max-width: 600px) {
   nav ul {
     padding: 0.5rem 0;
@@ -79,4 +125,45 @@ nav a {
     padding: 10px;
     text-align: center;
   }
+}
+
+input[type=text],
+select,
+input[type="email"],
+input[type="password"],
+input[type="number"] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
 }
