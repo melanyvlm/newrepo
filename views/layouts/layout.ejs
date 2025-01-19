@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head') %> <!-- This should be correct -->
+    <%- include('../partials/head'); %> <!-- This should be correct -->
 
 <head>
     <meta charset="UTF-8">
@@ -11,12 +11,14 @@
     <div class="id" id="wrapper">
         <%- include('../partials/header'); %>
         <%- include('../partials/navigation'); %>
+        <main>
+            <%- body %>
+    
+          
+        </main>
+        <%- include('../partials/footer'); %>
     </div>
 
-    <main>
-        <%- body %>
-
-        <%- include('../partials/footer'); %>
-    </main>
+    
 </body>
 </html>
