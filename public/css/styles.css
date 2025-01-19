@@ -5,6 +5,12 @@
   box-sizing: border-box;
 }
 
+@media only screen and (min-width: 32.5em) {
+  body {
+    background-image: url(/public/images/site/checkerboard.jpg);
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -13,55 +19,64 @@ body {
 /* Navigation */
 header,
 .hero {
-    padding: 0.2rem 0;
+  padding: 0.2rem 0;
 }
 
 header a {
-    float: right;
-    padding: 2rem;
-    color: #3a3a3a;
-    text-decoration: none;
-
+  float: right;
+  padding: 2rem;
+  color: #3a3a3a;
+  text-decoration: none;
 }
 
 a {
-    color: #4c96d7;
+  color: #4c96d7;
 }
 
 nav {
-    background-color: #3a3a3a;
+  background-color: #3a3a3a;
 }
 
 nav ul {
-    list-style: none;
-    margin: 0;
-    background-color: #3a3a3a;
-    display: flex;
-    justify-content: flex-start;
+  list-style: none;
+  margin: 0;
+  background-color: #3a3a3a;
+  display: flex;
+  justify-content: flex-start;
 }
 
 nav a {
-    text-decoration: none;
-    display: block;
-    padding: 1em;
-    color: #ffffff;
+  text-decoration: none;
+  display: block;
+  padding: 1em;
+  color: #ffffff;
 }
 
+#main-container {
+  margin: 0;
+}
 
+/* Home */
+.hero {
+  background-image: url(/public/images/vehicles/delorean.jpg);
+  color: #4c96d7;
+  font-size: 18px;
+  height: 550px;
+  background-repeat: no-repeat;
+  background-position: 67px 90px;
+}
 
-@media(max-width:600px) {
-
-
+@media (max-width: 600px) {
   nav ul {
-      padding: 0.5rem 0;
-      /* padding: 0;
+    padding: 0.5rem 0;
+    /* padding: 0;
       flex-flow: column wrap; */
-      /* display: block; */
-      text-align: center;
+    /* display: block; */
+    text-align: center;
   }
 
   nav ul li a {
-      padding: 10px;
-      text-align: center;
+    padding: 10px;
+    text-align: center;
   }
 }

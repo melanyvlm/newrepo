@@ -9,13 +9,15 @@
 </head>
 
 <body>
-    <div id="wrapper"> <!-- Se cierra correctamente la etiqueta <div> -->
-        <%- include('../partials/header'); %>
-            <%- include('../partials/navigation'); %>
-                <main>
-                    <%- body %>
-                </main>
-                <%- include('../partials/footer'); %>
+    <div id="main-container">
+        <div id="wrapper"> <!-- Se cierra correctamente la etiqueta <div> -->
+            <%- include('../partials/header'); %>
+                <%- include('../partials/navigation'); %>
+                    <main>
+                        <%- body %>
+                    </main>
+                    <%- include('../partials/footer'); %>
+        </div>
     </div>
 </body>
 
