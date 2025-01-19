@@ -248,10 +248,6 @@ hr {
   display: block;
 }
 
-.info .row-info {
-  display: flex;
-  flex-direction: column-reverse;
-}
 
 .row-info .reviews ul li {
   padding-bottom: 1rem;
