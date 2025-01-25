@@ -136,7 +136,7 @@ nav a {
   font-size: 18px;
   height: 370px;
   background-repeat: no-repeat;
-  background-position: 67px 90px;
+  background-position: 300px 90px;
 }
 
 .hero .title-car {
@@ -153,9 +153,6 @@ nav a {
   background-color: #2e70db;
   padding: 12px 24px;
   font-weight: 500;
-  position: relative;
-  left: 48px;
-  top: 5px;
 }
 .hero ul {
   padding: 0;
