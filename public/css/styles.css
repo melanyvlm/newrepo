@@ -254,3 +254,51 @@ hr {
 .row-info .reviews ul li {
   padding-bottom: 1rem;
 }
+/* Inventory */
+
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.vehicle-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.vehicle-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.vehicle-info {
+  padding: 15px;
+  text-align: center;
+}
+
+.vehicle-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.vehicle-price {
+  font-size: 16px;
+  color: #3a3a3a;
+  font-weight: normal;
+}
+
+.notice {
+  color: #ff6b6b;
+  text-align: center;
+  font-size: 18px;
+}
+
+/*  */
