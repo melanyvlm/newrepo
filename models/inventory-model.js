@@ -25,8 +25,25 @@ async function getInventoryByClassificationId(classification_id) {
   }
 }
 
+async function getVehicleDetails(inv_id) {
+  try {
+    const data = await pool.query(
+      `SELECT * FROM public.inventory WHERE inv_id = $1`,
+      [inv_id]
+    );
+    
+    if (data.rows.length === 0) {
+      return null;  // Retorna null si no hay resultados
+    }
+    return data.rows[0]; // Devolvemos el primer vehículo encontrado
+  } catch (error) {
+    console.error("getVehicleDetails error " + error);
+    throw error;
+  }
+}
 
-module.exports = {getClassifications, getInventoryByClassificationId};
+
+module.exports = {getClassifications, getInventoryByClassificationId, getVehicleDetails};
 
 
 
