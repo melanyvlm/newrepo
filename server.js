@@ -38,7 +38,7 @@ app.use("/inv", inventoryRoute)
 
 // Ruta para generar un error 500 intencional
 app.get('/cause-error', (req, res, next) => {
-  const err = new Error('This is an intentional 500 error!');
+  const err = new Error('Oh no! There was a crash. Maybe try a different route?');
   err.status = 500;
   next(err); // Pasa el error al middleware de manejo de errores
 });
