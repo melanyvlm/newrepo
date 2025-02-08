@@ -36,6 +36,13 @@ app.get("/", baseController.buildHome)
 // Inventory routes
 app.use("/inv", inventoryRoute)
 
+// Ruta para generar un error 500 intencional
+app.get('/cause-error', (req, res, next) => {
+  const err = new Error('This is an intentional 500 error!');
+  err.status = 500;
+  next(err); // Pasa el error al middleware de manejo de errores
+});
+
 // This should be always the last route
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
@@ -46,14 +53,25 @@ app.use(async (req, res, next) => {
 * Place after all other middleware
 *************************/
 app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
+  let nav = await utilities.getNav();
+  console.error(`Error at: "${req.originalUrl}": ${err.message}`);
+
+  // Si es un error 500, usa la vista error-500.ejs
+  if (err.status === 500) {
+    return res.render("errors/error-500", {
+      title: "500 - Server Error",
+      message: err.message,
+      nav
+    });
+  }
+
+  // Para otros errores (como 404), usa error.ejs
   res.render("errors/error", {
-    title: err.status || 'Server Error',
+    title: err.status || "Server Error",
     message: err.message,
     nav
-  })
-})
+  });
+});
 
 /* ***********************
  * Local Server Information

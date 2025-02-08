@@ -34,7 +34,7 @@ Util.buildClassificationGrid = async function(data) {
     data.forEach(vehicle => {
       grid += '<div class="vehicle-card">'; // Tarjeta individual para cada vehículo
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id + '" class="vehicle-link" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">';
-      grid +=    '<img src="' + vehicle.inv_thumbnail + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' on CSE Motors" class="vehicle-image" />';
+      grid +=    '<img src="' + vehicle.inv_thumbnail + '" alt="A vehicle' + vehicle.inv_make + ' ' + vehicle.inv_model + ' on CSE Motors" class="vehicle-image" />';
       grid +=  '</a>';
       grid +=  '<div class="vehicle-info">';
       grid +=    '<h2 class="vehicle-title">';
@@ -62,7 +62,7 @@ Util.buildVehicleDetail = async function(vehicleData) {
   // Left column (Image and Title)
   detail += '<div class="vehicle-left-column">';
   detail += '<h1 class="vehicle-title">' + vehicleData.inv_make + ' ' + vehicleData.inv_model + '</h1>';
-  detail += '<img src="' + vehicleData.inv_image + '" alt="Image of ' + vehicleData.inv_make + ' ' + vehicleData.inv_model + '" class="vehicle-detail-image" />';
+  detail += '<img src="' + vehicleData.inv_image + '" alt="Image of a vehicle' + vehicleData.inv_make + ' ' + vehicleData.inv_model + '" class="vehicle-detail-image" />';
   detail += '</div>'; // vehicle-left-column
   
   // Right column (Vehicle Information)
