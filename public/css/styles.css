@@ -371,6 +371,8 @@ hr {
   background-color: #0056b3;
 }
 
+
+
 /* Media Query para dispositivos móviles */
 @media screen and (max-width: 768px) {
   .vehicle-detail-container {
@@ -403,4 +405,140 @@ hr {
   height: auto;
   display: block;
   margin: 20px auto;
+}
+
+
+/* Login form container */
+.form-login {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  margin: 2rem auto;
+}
+
+/* Form styles */
+.form-login form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-login label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Asegurar que el input de contraseña no afecte otros elementos */
+.form-login input[type="email"],
+.form-login input[type="password"] {
+  width: 100%;
+  box-sizing: border-box; /* Evita que el padding afecte el tamaño total */
+  padding: 8px;
+  margin-top: 5px;
+}
+
+
+
+.form-login button {
+  background: #2e70db;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+ 
+}
+
+/* Estilos para la regla de la contraseña */
+.form-login .password-rules {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* Estilos para el checkbox de "Show Password" */
+.form-login .show-password {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  margin-top:0px!important;
+}
+
+.form-login .show-password input {
+  cursor: pointer;
+}
+
+
+/* Form Register */
+
+/* Registro form container */
+.form-register {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+  margin: 2rem auto;
+}
+
+.form-register h1{
+  text-align: center;
+}
+/* Form styles */
+.form-register form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-register label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Estilo para inputs y select */
+.form-register input[type="text"],
+.form-register input[type="email"],
+.form-register input[type="password"],
+.form-register input[type="number"],
+.form-register select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Botón de enviar */
+.form-register input[type="submit"],
+.form-register button[type="submit"] {
+  width: 100%;
+  background-color: #2e70db;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.form-register input[type="submit"]:hover,
+.form-register button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+.form-register .password-rules {
+  font-size: 0.9rem;
+  color: #555;
+  margin-top: 8px;
+  font-style: italic;
 }
