@@ -1,6 +1,9 @@
 const invModel = require("../models/inventory-model")
 const Util = {}
 
+
+
+
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
@@ -82,6 +85,14 @@ Util.buildVehicleDetail = async function(vehicleData) {
   return detail;
 };
 
+/* ************************
+ * Error Handling Middleware
+ ************************** */
+Util.handleErrors = (fn) => {
+  return function (req, res, next) {
+    Promise.resolve(fn(req, res, next)).catch(next);
+  };
+};
 
 
 

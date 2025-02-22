@@ -6,7 +6,8 @@ const utilities = require("../utilities")
 
 
 // Ruta para la vista de inicio de sesión
-router.get("/login", accountController.buildLogin);
-router.get("/register", accountController.buildRegister);
+router.get("/login", utilities.handleErrors(accountController.buildLogin))
+router.get("/register", utilities.handleErrors(accountController.buildRegister))
+router.post('/register', utilities.handleErrors(accountController.registerAccount))
 
 module.exports = router;
