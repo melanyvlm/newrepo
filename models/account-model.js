@@ -13,6 +13,17 @@ async function registerAccount(account_firstname, account_lastname, account_emai
     }
 }
 
-
+/* **********************
+ *   Check for existing email
+ * ********************* */
+async function checkExistingEmail(account_email) {
+    try {
+        const sql = "SELECT * FROM account WHERE account_email = $1"
+        const email = await pool.query(sql, [account_email])
+        return email.rowCount
+    } catch (error) {
+        return error.message
+    }
+}
 // Exportamos la función para poder usarla en otros archivos
-module.exports = { registerAccount };
+module.exports = { registerAccount ,checkExistingEmail };

@@ -305,6 +305,12 @@ hr {
   font-size: 18px;
 }
 
+.form-register ul.notice {
+  margin: 0;
+  list-style: none;
+  text-align: left;
+  font-size: 16px!important;
+}
 /*  */
 
 /* Vehicle Detail */
@@ -371,8 +377,6 @@ hr {
   background-color: #0056b3;
 }
 
-
-
 /* Media Query para dispositivos móviles */
 @media screen and (max-width: 768px) {
   .vehicle-detail-container {
@@ -381,7 +385,7 @@ hr {
   }
   .vehicle-detail-container .vehicle-title {
     font-size: 20px;
-}
+  }
   .vehicle-detail-container .vehicle-left-column,
   .vehicle-detail-container .vehicle-right-column {
     padding: 0;
@@ -406,7 +410,6 @@ hr {
   display: block;
   margin: 20px auto;
 }
-
 
 /* Login form container */
 .form-login {
@@ -441,8 +444,6 @@ hr {
   margin-top: 5px;
 }
 
-
-
 .form-login button {
   background: #2e70db;
   color: white;
@@ -450,7 +451,6 @@ hr {
   border: none;
   border-radius: 4px;
   cursor: pointer;
- 
 }
 
 /* Estilos para la regla de la contraseña */
@@ -467,13 +467,12 @@ hr {
   align-items: center;
   gap: 5px;
   font-size: 0.9rem;
-  margin-top:0px!important;
+  margin-top: 0px !important;
 }
 
 .form-login .show-password input {
   cursor: pointer;
 }
-
 
 /* Form Register */
 
@@ -488,7 +487,7 @@ hr {
   margin: 2rem auto;
 }
 
-.form-register h1{
+.form-register h1 {
   text-align: center;
 }
 /* Form styles */
@@ -543,24 +542,31 @@ hr {
   font-style: italic;
 }
 
-input:required:invalid, input:focus:invalid {
+input:required:invalid,
+input:focus:invalid {
   background-image: url(/images/invalid.png);
   background-position: right top;
   background-repeat: no-repeat;
- }
-  input:required:valid {
+}
+input:required:valid {
   background-image: url(/images/valid.png);
   background-position: right top;
   background-repeat: no-repeat;
-  }
-
-  input:required:invalid, input:focus:invalid {
- background-image: url(/images/invalid.png);
- background-position: right top;
- background-repeat: no-repeat;
 }
- input:required:valid {
- background-image: url(/images/valid.png);
- background-position: right top;
- background-repeat: no-repeat;
- }
+
+input:required:invalid,
+input:focus:invalid {
+  background-image: url(/images/invalid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+input:required:valid {
+  background-image: url(/images/valid.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+}
+
+.flash-message {
+  color: #ff6b6b !important;
+  font-weight: 00;
+}
