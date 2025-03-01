@@ -3,6 +3,8 @@ const utilities = require("../utilities/")
 const accountController = {}
 const accountModel = require("../models/account-model")
 const bcrypt = require("bcryptjs")
+
+
 /* ****************************************
  *  Deliver login view
  * *************************************** */
@@ -11,6 +13,7 @@ async function buildLogin(req, res, next) {
   res.render("account/login", {
     title: "Login",
     nav,
+    errors: null,
   });
 }
 
@@ -78,7 +81,45 @@ async function registerAccount(req, res) {
 
 }
 
+/* ****************************************
+ *  Process Login
+ * *************************************** */
+async function loginAccount(req, res) {
+  let nav = await utilities.getNav();
+  const { account_email, account_password } = req.body;
+
+  try {
+    // Buscar el usuario en la base de datos
+    const accountData = await accountModel.getAccountByEmail(account_email);
+    if (!accountData) {
+      req.flash("notice", "Email or password is incorrect.");
+      return res.status(400).redirect("/account/login");
+    }
+
+    // Comparar la contraseña ingresada con la almacenada en la BD
+    const isPasswordValid = await bcrypt.compare(account_password, accountData.account_password);
+    if (!isPasswordValid) {
+      req.flash("notice", "Email or password is incorrect.");
+      return res.status(400).redirect("/account/login");
+    }
+
+    // Guardar sesión
+    req.session.account = {
+      id: accountData.account_id,
+      email: accountData.account_email,
+      name: accountData.account_firstname
+    };
+
+    req.flash("notice", `Welcome back, ${accountData.account_firstname}!`);
+    return res.redirect("/");
+
+  } catch (error) {
+    console.error("Login error:", error);
+    req.flash("notice", "An error occurred. Please try again later.");
+    return res.status(500).redirect("/account/login");
+  }
+}
 
 
 
-module.exports = { buildLogin, buildRegister, registerAccount }
+module.exports = { buildLogin, buildRegister, registerAccount, loginAccount }
