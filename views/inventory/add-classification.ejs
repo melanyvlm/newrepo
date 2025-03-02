@@ -1,0 +1,16 @@
+<h1>Add a New Classification</h1>
+
+<!-- Mensajes de error o éxito -->
+<% if (messages.error) { %>
+    <div class="flash error"><%= messages.error %></div>
+<% } %>
+
+<form class="classification-form" action="/inv/add-classification" method="POST">
+    <label for="classification_name">Classification Name:</label>
+    <p>Name must be alphabetic characters only and contain no spaces.</p>
+    <input type="text" id="classification_name" name="classification_name" 
+           required maxlength="15" pattern="\S{1,15}" 
+           title="Must be 1-15 characters long with no spaces">
+    
+    <button type="submit">Add Classification</button>
+</form>

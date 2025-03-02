@@ -68,6 +68,23 @@ invCont.displayVehicleDetails = async function (req, res) {
   }
 };
 
+/* ***************************
+ *  Render Inventory Management View
+ * ************************** */
+
+invCont.renderManagementView = async function (req, res) {
+  try {
+    const nav = await utilities.getNav();
+    res.render("inventory/management", {
+      title: "Inventory Management",
+      nav: nav,
+      message: req.flash("message"),
+    });
+  } catch (error) {
+    console.error("Error loading inventory management page:", error);
+    res.status(500).send("Server error");
+  }
+};
 
 
 module.exports = invCont
