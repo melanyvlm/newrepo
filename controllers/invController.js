@@ -68,16 +68,42 @@ invCont.renderManagementView = async function (req, res) {
   }
 };
 
+// *******************************************************?????
 
-invCont.renderAddClassificationForm = async function(req, res) {
-  // Si hay un mensaje flash de error, lo pasamos a la vista
-  const messages = req.flash();
-  let nav = await utilities.getNav(); // Usamos await correctamente aquí
+/* ***************************
+ *  Renderizar formulario de agregar clasificación
+ * *************************** */
+invCont.renderAddClassificationForm = async function (req, res) {
+  let nav = await utilities.getNav();
   res.render("inventory/add-classification", {
     title: "Add New Classification",
-    nav: nav,
-    messages: messages, // Enviamos los mensajes a la vista
+    nav,
+    errors: null
   });
+};
+
+/* ***************************
+ *  Procesar nueva clasificación
+ * *************************** */
+invCont.addClassification = async function (req, res) {
+  try {
+    console.log(req.body); // Verifica qué datos llegan
+
+    const { classification_name } = req.body;
+    const success = await invModel.addNewClassification(classification_name);
+
+    if (success) {
+      req.flash("message", "Classification added successfully!");
+      return res.redirect("/inv/management");
+    } else {
+      req.flash("message", "Error adding classification.");
+      return res.redirect("/inv/add-classification");
+    }
+  } catch (error) {
+    console.error("Error in addClassification:", error);
+    req.flash("message", "Server error.");
+    return res.redirect("/inv/add-classification");
+  }
 };
 
 

@@ -114,4 +114,42 @@ validate.checkLoginData = async (req, res, next) => {
     next()
 }
 
+
+
+/* **********************************
+ *  Classification Data Validation Rules
+ * ********************************* */
+validate.classificationRules = () => {
+    return [
+      // classification_name is required and must be alphabetic
+      body("classification_name")
+        .trim()
+        .notEmpty()
+        .withMessage("Please provide a classification name.") // Mensaje de error
+        .matches(/^[A-Za-z]+$/) // Solo caracteres alfabéticos
+        .withMessage("Please provide a classification name with alphabetic characters only.") // Mensaje de error
+        .isLength({ min: 2, max: 20 }) // Longitud entre 2 y 20 caracteres
+        .withMessage("Classification name must be between 2 and 20 characters long.") // Mensaje de error
+    ];
+  };
+  
+  /* ******************************
+   * Check data and return errors or continue to add classification
+   * ***************************** */
+  validate.checkClassificationData = async (req, res, next) => {
+    const { classification_name } = req.body;
+    let errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      let nav = await utilities.getNav();
+      res.render("inventory/add-classification", {
+        errors: errors.array(),
+        title: "Add New Classification",
+        nav,
+        classification_name
+      });
+      return;
+    }
+    next();
+  };
+  
 module.exports = validate

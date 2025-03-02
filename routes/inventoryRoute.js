@@ -2,6 +2,8 @@
 const express = require("express")
 const router = new express.Router() 
 const invController = require("../controllers/invController")
+const validate = require("../utilities/account-validation"); // Importar validaciones
+const utilities = require("../utilities")
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
@@ -19,5 +21,10 @@ router.get("/management", invController.renderManagementView);
 
 // Ruta para mostrar el formulario de agregar clasificación
 router.get("/add-classification", invController.renderAddClassificationForm);
-
+router.post(
+    "/add-classification",
+    validate.classificationRules(), // Validación de datos
+    validate.checkClassificationData, // Verificar errores
+    utilities.handleErrors(invController.addClassification) // Procesar si no hay errores
+  );
 module.exports = router;
