@@ -14,4 +14,10 @@ router.get("/detail/:id", invController.displayVehicleDetails);
 router.get('/', invController.renderManagementView);
 router.get("/management", invController.renderManagementView);
 
+// Add new classification
+
+
+// Ruta para mostrar el formulario de agregar clasificación
+router.get("/add-classification", invController.renderAddClassificationForm);
+
 module.exports = router;

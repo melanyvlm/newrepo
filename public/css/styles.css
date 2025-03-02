@@ -570,3 +570,8 @@ input:required:valid {
   color: #ff6b6b !important;
   font-weight: 00;
 }
+
+.classification-form{
+  max-width: 400px;
+  
+}

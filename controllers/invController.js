@@ -22,24 +22,6 @@ invCont.buildByClassificationId = async function (req, res, next) {
   })
 }
 
-/* ***************************
- *  Build inventory by classification view
- * ************************** */
-invCont.buildByClassificationId = async function (req, res, next) {
-  const classification_id = req.params.classificationId;
-  const data = await invModel.getInventoryByClassificationId(classification_id)
-  if (data.length === 0) {
-    return res.status(404).send("No vehicles found for this classification.");
-  }
-  const grid = await utilities.buildClassificationGrid(data)
-  let nav = await utilities.getNav()
-  const className = data[0].classification_name;
-  res.render("./inventory/classification", {
-    title: className + " vehicles",
-    nav,
-    grid,
-  });
-};
 
 
 /* ***************************
@@ -85,6 +67,19 @@ invCont.renderManagementView = async function (req, res) {
     res.status(500).send("Server error");
   }
 };
+
+
+invCont.renderAddClassificationForm = async function(req, res) {
+  // Si hay un mensaje flash de error, lo pasamos a la vista
+  const messages = req.flash();
+  let nav = await utilities.getNav(); // Usamos await correctamente aquí
+  res.render("inventory/add-classification", {
+    title: "Add New Classification",
+    nav: nav,
+    messages: messages, // Enviamos los mensajes a la vista
+  });
+};
+
 
 
 module.exports = invCont
