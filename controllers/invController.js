@@ -106,6 +106,30 @@ invCont.addClassification = async function (req, res) {
   }
 };
 
+invCont.renderAddInventoryForm = async function (req, res, next) {
+  try {
+    const classificationData = await invModel.getClassifications();
+    const nav = await utilities.getNav();
+    res.render('inventory/add-inventory', {
+      title: 'Add Inventory',
+      nav,
+      classifications: classificationData.rows
+    });
+  } catch (error) {
+    console.error('Error rendering add inventory form:', error);
+    next(error);
+  }
+};
 
+invCont.addInventory = async function (req, res) {
+  try {
+    const { classification_id, inv_name } = req.body;
+    await invModel.addInventory(classification_id, inv_name);
+    res.redirect('/inv');
+  } catch (error) {
+    console.error('Error adding inventory:', error);
+    res.status(500).send('Server Error');
+  }
+};
 
 module.exports = invCont

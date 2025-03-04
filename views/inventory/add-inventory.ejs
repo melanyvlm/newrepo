@@ -1,0 +1,20 @@
+
+
+<h1>Add Inventory</h1>
+<form action="/inv/add-inventory" method="POST" class="inventory-form">
+    <label for="classification_id">Classification:</label>
+    <select name="classification_id" id="classification_id">
+        <% classifications.forEach(classification => { %>
+            <option value="<%= classification.classification_id %>">
+                <%= classification.classification_name %>
+            </option>
+        <% }) %>
+    </select>
+
+    <label for="inv_name">Inventory Name:</label>
+    <input type="text" name="inv_name" id="inv_name" required>
+
+    <button type="submit">Add Inventory</button>
+</form>
+
+

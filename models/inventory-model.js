@@ -54,8 +54,17 @@ async function addNewClassification(classification_name) {
     return false;
   }
 }
+async function addInventory(classification_id, inv_name) {
+  return await pool.query(
+      'INSERT INTO inventory (classification_id, inv_name) VALUES ($1, $2)',
+      [classification_id, inv_name]
+  );
+}
 
-module.exports = {getClassifications, getInventoryByClassificationId, getVehicleDetails, addNewClassification};
+
+
+
+module.exports = {getClassifications, getInventoryByClassificationId, getVehicleDetails, addNewClassification, addInventory};
 
 
 
