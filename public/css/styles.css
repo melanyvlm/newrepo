@@ -196,6 +196,7 @@ footer {
 
 input[type="text"],
 select,
+textarea,
 input[type="email"],
 input[type="password"],
 input[type="number"] {
@@ -577,4 +578,17 @@ input:required:valid {
 }
 .inventory-form{
   max-width: 400px;
+}
+/* 🔴 Rojo cuando el input no es válido y está en foco */
+.inventory-form input:focus:invalid,
+.inventory-form textarea:focus:invalid {
+  background-color: #ffcccc; /* Rojo */
+  border: 2px solid red;
+}
+
+/* 🟢 Verde cuando el input es válido */
+.inventory-form input:valid,
+.inventory-form textarea:valid {
+  background-color: #ccffcc; /* Verde */
+  border: 2px solid green;
 }
