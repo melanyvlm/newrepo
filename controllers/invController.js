@@ -22,8 +22,6 @@ invCont.buildByClassificationId = async function (req, res, next) {
   })
 }
 
-
-
 /* ***************************
  *  Display vehicle details
  * ************************** */
@@ -49,7 +47,6 @@ invCont.displayVehicleDetails = async function (req, res) {
     res.status(500).send("Server error");
   }
 };
-
 /* ***************************
  *  Render Inventory Management View
  * ************************** */
@@ -123,12 +120,22 @@ invCont.renderAddInventoryForm = async function (req, res, next) {
 
 invCont.addInventory = async function (req, res) {
   try {
-    const { classification_id, inv_name } = req.body;
-    await invModel.addInventory(classification_id, inv_name);
-    res.redirect('/inv');
+    const nav = await utilities.getNav();
+    const { classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color } = req.body;
+    
+    const success = await invModel.addInventory(classification_id, inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color);
+
+    if(success){
+      req.flash("message", "New Vehicle added successfully!");
+      return res.redirect("/inv");
+    } else {
+      req.flash("message", "Error adding vehicle.");
+      return res.redirect("/inv/add-inventory");
+    }
   } catch (error) {
-    console.error('Error adding inventory:', error);
-    res.status(500).send('Server Error');
+    console.error("Error in addInventory:", error);
+    req.flash("message", "Server error.");
+    return res.redirect("/inv/add-inventory");
   }
 };
 
