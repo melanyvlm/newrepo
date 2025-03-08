@@ -1,10 +1,19 @@
-<h1>Add a New Classification</h1>
-
-<!-- Mostrar mensajes de error o éxito -->
-<% if (messages.error) { %>
-  <div class="flash error"><%= messages.error %></div>
+<% if (title) { %>
+  <h1><%= title %></h1>
+<% } else { %>
+  <script>
+      window.location.href = "/";
+  </script>
 <% } %>
 
+<% errors = (typeof errors !== 'undefined' && errors !== null) ? errors : [] %>
+<% if (errors.length > 0) { %>
+  <ul class="notice">
+      <% errors.forEach(error => { %>
+          <li><%= error.msg %></li>
+      <% }) %>
+  </ul>
+<% } %>
 <form class="classification-form" action="/inv/add-classification" method="POST">
   <label for="classification_name">Classification Name:</label>
   <p>Name must be alphabetic characters only and contain no spaces.</p>

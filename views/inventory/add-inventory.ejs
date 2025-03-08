@@ -1,6 +1,21 @@
 
+<% if (title) { %>
+    <h1><%= title %></h1>
+<% } else { %>
+    <script>
+        window.location.href = "/";
+    </script>
+<% } %>
 
-<h1>Add Vehicle</h1>
+<% errors = (typeof errors !== 'undefined' && errors !== null) ? errors : [] %>
+<% if (errors.length > 0) { %>
+    <ul class="notice">
+        <% errors.forEach(error => { %>
+            <li><%= error.msg %></li>
+        <% }) %>
+    </ul>
+<% } %>
+
 <form action="/inv/add-inventory" method="POST" class="inventory-form">
     <label for="classification_id">Classification:</label>
     <select name="classification_id" id="classification_id" required>
