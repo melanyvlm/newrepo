@@ -27,7 +27,12 @@ router.post(
   validate.checkClassificationData, // Verificar errores
   utilities.handleErrors(invController.addClassification) // Procesar si no hay errores
 );
-router.get('/add-inventory', invController.renderAddInventoryForm);
-router.post('/add-inventory', invController.addInventory);
 
+router.get('/add-inventory', invController.renderAddInventoryForm);
+router.post(
+  "/add-inventory",
+  validate.inventoryRules(), // Validación de datos
+  validate.checkInventoryData, // Verificar errores
+  utilities.handleErrors(invController.addInventory) // Procesar si no hay errores
+);
 module.exports = router;

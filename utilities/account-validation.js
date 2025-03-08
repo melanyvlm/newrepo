@@ -1,6 +1,7 @@
 const utilities = require(".")
-const accountModel = require("../models/account-model")
 const { body, validationResult } = require("express-validator")
+const accountModel = require("../models/account-model")
+const invModel = require("../models/inventory-model")
 const validate = {}
 
 /*  **********************************
@@ -128,8 +129,7 @@ validate.classificationRules = () => {
         .withMessage("Please provide a classification name.") // Mensaje de error
         .matches(/^[A-Za-z]+$/) // Solo caracteres alfabéticos
         .withMessage("Please provide a classification name with alphabetic characters only.") // Mensaje de error
-        .isLength({ min: 2, max: 20 }) // Longitud entre 2 y 20 caracteres
-        .withMessage("Classification name must be between 2 and 20 characters long.") // Mensaje de error
+
     ];
   };
   
@@ -152,4 +152,94 @@ validate.classificationRules = () => {
     next();
   };
   
+  /* ******************************
+ *  Inventory Validation Rules
+ * ***************************** */
+validate.inventoryRules = () => {
+    return [
+      body("classification_id")
+        .trim()
+        .notEmpty()
+        .withMessage("Please select a classification."),
+  
+      body("inv_make")
+        .trim()
+        .escape()
+        .notEmpty()
+        .withMessage("Make is required."),
+  
+      body("inv_model")
+        .trim()
+        .escape()
+        .notEmpty()
+        .withMessage("Model is required."),
+  
+      body("inv_year")
+      .trim()
+       .escape()
+      .notEmpty()
+      .withMessage("Please provide the year of the vehicle.")
+      .isLength({ min: 4, max: 4 }),
+  
+      body("inv_color")
+        .trim()
+        .escape()
+        .notEmpty()
+        .withMessage("Color is required."),
+  
+      body("inv_description")
+        .trim()
+        .escape()
+        .notEmpty()
+        .withMessage("Description is required."),
+  
+      body("inv_image")
+        .trim()
+        .escape()
+        .notEmpty()
+        .withMessage("Image path is required."),
+  
+      body("inv_thumbnail")
+        .trim()
+        .escape()
+        .notEmpty()
+        .withMessage("Thumbnail path is required."),
+  
+      body("inv_price")
+        .trim()
+        .escape()
+        .isFloat({ min: 0 })
+        .withMessage("Price must be a positive number."),
+  
+      body("inv_miles")
+        .trim()
+        .escape()
+        .isInt({ min: 0 })
+        .withMessage("Mileage must be a non-negative integer."),
+    ]
+  }
+  
+  /* ******************************
+   * Check Inventory Data and return errors or continue to addition
+   * ***************************** */
+  validate.checkInventoryData = async (req, res, next) => {
+    const errors = validationResult(req);
+    
+    if (!errors.isEmpty()) {
+        const nav = await utilities.getNav();
+        const classificationList = await utilities.buildClassificationList(req.body.classification_id);
+
+        res.render("inventory/add-inventory", {
+            title: "Add Inventory",
+            nav,
+            errors: errors.array(),
+            classificationList,
+            formData: req.body
+        });
+        return;
+    }
+    
+    next();
+};
+
 module.exports = validate
