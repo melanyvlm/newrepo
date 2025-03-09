@@ -109,7 +109,8 @@ invCont.renderAddInventoryForm = async function (req, res) {
   res.render("inventory/add-inventory", {
     title: "Add Inventory",
     nav,
-    classificationList
+    classificationList,
+    errors: null
   })
 }
 
@@ -142,6 +143,7 @@ invCont.addInventory = async function (req, res) {
       req.flash("message", "Failed to add inventory item or vehicle already exists.");
       res.status(501).render("inventory/add-inventory", {
         title: "Add Inventory",
+        errors: null,
         nav,
         classificationList,
         ...inventoryData
@@ -152,6 +154,7 @@ invCont.addInventory = async function (req, res) {
     req.flash("message", "An error occurred while adding the inventory item.");
     res.status(500).render("inventory/add-inventory", {
       title: "Add Inventory",
+      errors: null,
       nav,
       classificationList,
       ...inventoryData

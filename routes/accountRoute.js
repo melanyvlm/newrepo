@@ -5,6 +5,8 @@ const router = new express.Router()
 const accountController = require("../controllers/accountController")
 const utilities = require("../utilities")
 
+// Default route to account
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.accountManagement))
 
 // Ruta para la vista de inicio de sesión
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
@@ -20,8 +22,11 @@ router.post(
 // Process the login attempt
 router.post(
   "/login",
-  regValidate.loginRules(), // Aplica reglas de validación
-  regValidate.checkLoginData, // Verifica errores antes de continuar
-  utilities.handleErrors(accountController.loginAccount) // Ahora usa loginAccount
+  regValidate.loginRules(), 
+  regValidate.checkLoginData, 
+  utilities.handleErrors(accountController.accountLogin) 
 );
+
+
+
 module.exports = router;

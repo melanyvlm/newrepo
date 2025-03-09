@@ -222,7 +222,7 @@ input[type="submit"] {
 
 button[type="submit"] {
   width: 100%;
-  background-color: #4caf50;
+  background-color: #204F20;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -232,7 +232,7 @@ button[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: #204F20;
 }
 
 .row {
@@ -301,7 +301,7 @@ hr {
 }
 
 .notice {
-  color: #ff6b6b;
+  color: #A84343;
   text-align: center;
   font-size: 18px;
 }
@@ -533,7 +533,7 @@ hr {
 
 .form-register input[type="submit"]:hover,
 .form-register button[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: #204F20;
 }
 
 .form-register .password-rules {
@@ -568,8 +568,8 @@ input:required:valid {
 }
 
 .flash-message {
-  color: #ff6b6b !important;
-  font-weight: 00;
+  color: #A84343 !important;
+  font-weight: 400;
 }
 
 .classification-form{
@@ -579,16 +579,15 @@ input:required:valid {
 .inventory-form{
   max-width: 400px;
 }
-/* 🔴 Rojo cuando el input no es válido y está en foco */
+
 .inventory-form input:focus:invalid,
 .inventory-form textarea:focus:invalid {
   background-color: #ffcccc; /* Rojo */
   border: 2px solid red;
 }
 
-/* 🟢 Verde cuando el input es válido */
+
 .inventory-form input:valid,
 .inventory-form textarea:valid {
   background-color: #ccffcc; /* Verde */
-  border: 2px solid green;
 }

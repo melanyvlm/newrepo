@@ -215,7 +215,7 @@ validate.inventoryRules = () => {
         .trim()
         .escape()
         .isInt({ min: 0 })
-        .withMessage("Mileage must be a non-negative integer."),
+        .withMessage("Miles must be a non-negative integer."),
     ]
   }
   
@@ -228,13 +228,13 @@ validate.inventoryRules = () => {
     if (!errors.isEmpty()) {
         const nav = await utilities.getNav();
         const classificationList = await utilities.buildClassificationList(req.body.classification_id);
-
+        const { inventory_data } = req.body;
         res.render("inventory/add-inventory", {
+            errors: errors.array(),
             title: "Add Inventory",
             nav,
-            errors: errors.array(),
             classificationList,
-            formData: req.body
+            inventory_data
         });
         return;
     }

@@ -13,11 +13,12 @@
         <% }) %>
     </ul>
     <% } %>
+    <%- messages() %>
       <form class="classification-form" action="/inv/add-classification" method="POST">
         <label for="classification_name">Classification Name:</label>
         <p>Name must be alphabetic characters only and contain no spaces.</p>
         <input type="text" id="classification_name" name="classification_name" required maxlength="15"
-          pattern="\S{1,15}" title="Must be 1-15 characters long with no spaces">
+          pattern="\S{1,15}" title="Must be 1-15 characters long with no spaces" value="<%= locals.classification_name %>" >
 
         <button type="submit">Add Classification</button>
       </form>
