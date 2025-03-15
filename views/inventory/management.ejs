@@ -1,10 +1,28 @@
-<h1>Inventory Management</h1>
+<% if (title) { %>
+  <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+} %>
 
-<% if (message) { %>
-  <p class="flash-message"><%= message %></p>
+<% errors = (typeof errors !== 'undefined' && errors !== null) ? errors : [] %>
+<% if (errors.length > 0) { %>
+  <ul class="notice">
+      <% errors.forEach(error => { %>
+          <li><%= error.msg %></li>
+      <% }) %>
+  </ul>
 <% } %>
 
 <ul>
+  <%- messages() %>
   <li><a href="/inv/add-classification">Add New Classification</a></li>
   <li><a href="/inv/add-inventory">Add New Vehicle</a></li>
 </ul>
+<h2>Manage Inventory</h2>
+    <br>
+    <p>Please select a classification to manage inventory items.</p>
+    <br>
+    <%- locals.classificationList %>
+<table id="inventoryDisplay"></table>
+<noscript>JavaScript must be enabled to use this page.</noscript>
+<script src="/js/inventory.js"></script>
