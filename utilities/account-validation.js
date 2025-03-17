@@ -242,4 +242,108 @@ validate.inventoryRules = () => {
     next();
 };
 
+validate.checkUpdateData = async (req, res, next) => {
+  const { 
+    inv_id, 
+    inv_make, 
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color,
+    classification_id 
+  } = req.body
+  const errors = validationResult(req) 
+  if (!errors.isEmpty()) {
+    let nav = await utilities.getNav()
+    const classificationList = await utilities.buildClassificationList(classification_id)
+    const title = `${inv_make} ${inv_model}`
+    return res.render("inventory/edit-vehicle", { 
+      title: "Edit " + title,
+      nav,
+      classificationList, 
+      errors: errors.array(), 
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_year,
+      inv_miles,
+      inv_color,
+      classification_id
+    })
+  }
+  next()
+}
+
+validate.updateInventoryRules = () => {
+  return [
+    body("classification_id")
+      .trim()
+      .notEmpty()
+      .withMessage("Please select a classification."),
+
+    body("inv_make")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Make is required."),
+
+    body("inv_model")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Model is required."),
+
+    body("inv_year")
+    .trim()
+     .escape()
+    .notEmpty()
+    .withMessage("Please provide the year of the vehicle.")
+    .isLength({ min: 4, max: 4 }),
+
+    body("inv_color")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Color is required."),
+
+    body("inv_description")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Description is required."),
+
+    body("inv_image")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Image path is required."),
+
+    body("inv_thumbnail")
+      .trim()
+      .escape()
+      .notEmpty()
+      .withMessage("Thumbnail path is required."),
+
+    body("inv_price")
+      .trim()
+      .escape()
+      .isFloat({ min: 0 })
+      .withMessage("Price must be a positive number."),
+
+    body("inv_miles")
+      .trim()
+      .escape()
+      .isInt({ min: 0 })
+      .withMessage("Miles must be a non-negative integer."),
+  ]
+}
+
 module.exports = validate

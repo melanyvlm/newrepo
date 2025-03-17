@@ -34,4 +34,8 @@ router.post(
 );
 
 router.get("/edit/:id", utilities.handleErrors(invController.editInventoryView));
+router.post("/update/", 
+  validate.updateInventoryRules(), 
+  validate.checkUpdateData, 
+  utilities.handleErrors(invController.updateInventory))
 module.exports = router;
