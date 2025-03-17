@@ -7,9 +7,7 @@ async function getClassifications() {
   return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
 }
 
-/* ***************************
- *  Get all inventory items and classification_name by classification_id
- * ************************** */
+
 async function getInventoryByClassificationId(classification_id) {
   try {
     const data = await pool.query(
@@ -25,23 +23,14 @@ async function getInventoryByClassificationId(classification_id) {
   }
 }
 
-async function getVehicleDetails(inv_id) {
+async function getVehicleById(inv_id) {
   try {
-    const data = await pool.query(
-      `SELECT * FROM public.inventory WHERE inv_id = $1`,
-      [inv_id]
-    );
-
-    if (data.rows.length === 0) {
-      return null;  // Retorna null si no hay resultados
-    }
-    return data.rows[0]; // Devolvemos el primer vehículo encontrado
+    const data = await pool.query( `SELECT * FROM public.inventory AS i WHERE i.inv_id = $1`, [inv_id] )
+    return data.rows[0]
   } catch (error) {
-    console.error("getVehicleDetails error " + error);
-    throw error;
+    console.error("getInventoryById error " + error)
   }
 }
-
 
 async function addNewClassification(classification_name) {
   try {
@@ -85,7 +74,7 @@ async function addInventory(vehicleInfo) {
 
 
 
-module.exports = { getClassifications, getInventoryByClassificationId, getVehicleDetails, addNewClassification, addInventory };
+module.exports = { getClassifications, getInventoryByClassificationId, getVehicleById, addNewClassification, addInventory };
 
 
 

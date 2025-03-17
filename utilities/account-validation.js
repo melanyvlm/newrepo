@@ -222,7 +222,7 @@ validate.inventoryRules = () => {
   /* ******************************
    * Check Inventory Data and return errors or continue to addition
    * ***************************** */
-  validate.checkInventoryData = async (req, res, next) => {
+  validate.checkinvData = async (req, res, next) => {
     const errors = validationResult(req);
     
     if (!errors.isEmpty()) {

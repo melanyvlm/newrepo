@@ -11,11 +11,8 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 // New route to show details of a vehicle 
 router.get("/detail/:id", invController.displayVehicleDetails);
 
-
-// Route to the inventory management view
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
 router.get('/', invController.renderManagementView);
-router.get("/management", invController.renderManagementView);
-
 // Add new classification
 
 
@@ -32,9 +29,9 @@ router.get('/add-inventory', invController.renderAddInventoryForm);
 router.post(
   "/add-inventory",
   validate.inventoryRules(), // Validación de datos
-  validate.checkInventoryData, // Verificar errores
+  validate.checkinvData, // Verificar errores
   utilities.handleErrors(invController.addInventory) // Procesar si no hay errores
 );
 
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+router.get("/edit/:id", utilities.handleErrors(invController.editInventoryView));
 module.exports = router;
