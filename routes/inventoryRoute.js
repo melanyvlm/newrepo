@@ -13,9 +13,11 @@ router.get("/detail/:id", invController.displayVehicleDetails);
 
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
 router.get('/', invController.renderManagementView);
+
+router.get("/delete/:id", utilities.handleErrors(invController.renderDeleteConfirmation));
+router.post("/delete/", utilities.handleErrors(invController.deleteInventoryItem));
+
 // Add new classification
-
-
 // Ruta para mostrar el formulario de agregar clasificación
 router.get("/add-classification", invController.renderAddClassificationForm);
 router.post(
