@@ -317,7 +317,6 @@ invCont.deleteInventoryItem = async function (req, res, next) {
     });
 
   } catch (error) {
-    console.error("Error deleting inventory item:", error);
     req.flash("notice", "Sorry, there was an error deleting the vehicle.");
     res.status(500).redirect("/inv/");
   }

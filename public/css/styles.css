@@ -1,9 +1,9 @@
 /******* Change Box Model ***************/
-*,
-*:before,
-*:after {
+/* Change Box Model */
+*, *::before, *::after {
   box-sizing: border-box;
 }
+
 
 @media only screen and (min-width: 32.5em) {
   body {
@@ -576,7 +576,7 @@ input:required:valid {
   max-width: 400px;
   
 }
-.inventory-form, .updateForm{
+.inventory-form, .updateForm ,.management-form{
   max-width: 400px;
 }
 
@@ -591,4 +591,9 @@ input:required:valid {
 .inventory-form input:valid,
 .inventory-form textarea:valid {
   background-color: #ccffcc; /* Verde */
+}
+
+#tools {
+  display: flex;
+  flex-direction: row;
 }
