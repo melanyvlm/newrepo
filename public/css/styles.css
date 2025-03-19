@@ -302,7 +302,6 @@ hr {
 
 .notice {
   color: #A84343;
-  text-align: center;
   font-size: 18px;
 }
 
@@ -576,7 +575,7 @@ input:required:valid {
   max-width: 400px;
   
 }
-.inventory-form, .updateForm ,.management-form{
+.inventory-form, .updateForm ,.management-form , .updatesection{ 
   max-width: 400px;
 }
 

@@ -346,4 +346,47 @@ validate.updateInventoryRules = () => {
   ]
 }
 
+validate.updateAccountRules = () => {
+  return [
+    body("account_firstname")
+      .trim()
+      .isLength({ min: 1 }),
+    body("account_lastname")
+      .trim()
+      .isLength({ min: 1 }),
+    body("account_email").trim().isEmail().withMessage("Valid email required"),
+    body("account_id").isInt().withMessage("Invalid account ID"),
+  ];
+};
+
+validate.checkAccountUpdateData = async (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return accountController.buildAccountUpdate(req, res, next, {
+      errors: errors.array(),
+      ...req.body,
+    })
+  }
+  next()
+}
+
+validate.changePasswordRules = () => {
+  return [
+    // password is required and must be strong password
+    body("account_password")
+      .trim()
+      .notEmpty()
+      .isStrongPassword({
+        minLength: 12,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1,
+      })
+      .withMessage("Password does not meet requirements."),
+  ]
+}
+
+
+
 module.exports = validate

@@ -31,7 +31,29 @@ router.post(
   regValidate.checkLoginData, 
   utilities.handleErrors(accountController.accountLogin) 
 );
+// Process update view
+router.get(
+  "/update",
+  utilities.checkJWTToken,
+  utilities.handleErrors(accountController.buildUpdateAccountView)
+);
 
 
+// Process update inputs
+router.post(
+  "/update",
+  utilities.checkJWTToken,
+  regValidate.updateAccountRules(),
+  regValidate.checkAccountUpdateData,
+  utilities.handleErrors(accountController.updateAccount)
+);
 
+// Process update password
+router.post(
+  "/change-password",
+  utilities.checkJWTToken,
+  regValidate.changePasswordRules(),
+  regValidate.checkAccountUpdateData,
+  utilities.handleErrors(accountController.changePassword)
+);
 module.exports = router;
