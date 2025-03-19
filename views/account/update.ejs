@@ -40,7 +40,9 @@
             <input type="password" id="account_password" name="account_password" required
                 pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
                 placeholder="Enter your new password">
-
+            <label for="account_password_confirmation">Confirm Password:</label>
+            <input type="password" id="account_password_confirmation" name="account_password_confirmation" required
+                placeholder="Confirm your new password">
             <input type="hidden" name="account_id" value="<%= locals.account_id %>">
             <button type="submit">Change Password</button>
         </form>

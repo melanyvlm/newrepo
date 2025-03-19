@@ -44,7 +44,7 @@ router.post(
   "/update",
   utilities.checkJWTToken,
   regValidate.updateAccountRules(),
-  regValidate.checkAccountUpdateData,
+  regValidate.checkUpdateAccountData,
   utilities.handleErrors(accountController.updateAccount)
 );
 
@@ -53,7 +53,7 @@ router.post(
   "/change-password",
   utilities.checkJWTToken,
   regValidate.changePasswordRules(),
-  regValidate.checkAccountUpdateData,
+  regValidate.checkPasswordData,
   utilities.handleErrors(accountController.changePassword)
 );
 module.exports = router;
